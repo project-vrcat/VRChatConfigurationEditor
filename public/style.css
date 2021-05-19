@@ -1,0 +1,25 @@
+body {
+    padding: 10px;
+}
+
+.button-change {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+}
+
+.input-dir {
+    border-bottom-right-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+}
+
+label {
+    margin-left: -1rem;
+}
+
+.links {
+    position: fixed;
+    bottom: 5px;
+    right: 8px;
+    z-index: 888;
+    background-color: #fff;
+}

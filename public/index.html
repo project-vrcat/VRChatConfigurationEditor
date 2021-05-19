@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" class="notranslate" translate="no">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="google" value="notranslate"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <link rel="stylesheet" href="milligram.min.css"/>
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="shortcut icon" href="favicon.png">
+    <script src="vue.min.js"></script>
+    <title>VRChat Configuration Editor</title>
+</head>
+
+<body>
+<div id="app">
+    <fieldset>
+        <label for="inputDirectory">Custom Cache Directory Location:</label>
+        <div class="row">
+            <input
+                    type="text"
+                    id="inputDirectory"
+                    readonly
+                    v-model="config.cache_directory"
+                    class="input-dir"
+                    placeholder="Default Directory"
+            />
+            <button class="button button-change" @click="select" :disabled="disabled">Select</button>
+        </div>
+        <div style="margin-left: -1rem;">
+            <button class="button" @click="removeAllCache" :disabled="disabled||removeCache">
+                ⚠ Remove old cache
+            </button>
+            <button class="button" @click="config.cache_directory=''" :disabled="disabled">
+                Reset to default directory
+            </button>
+        </div>
+        <div class="float-right">
+            <button class="button button-outline" @click="reset" :disabled="disabled">Reset</button>
+            <button class="button" @click="save" :disabled="disabled">Save</button>
+        </div>
+    </fieldset>
+
+    <div class="links">
+        <a href="javascript:open('https://github.com/project-vrcat/VRChatConfigurationEditor');">GitHub</a>
+    </div>
+</div>
+<script src="main.js"></script>
+</body>
+</html>

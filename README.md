@@ -1,0 +1,3 @@
+# VRChat Configuration Editor
+
+WIP
