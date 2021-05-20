@@ -31,6 +31,7 @@ new Vue({
                 this.config = config
                 this.disabled = false
             }).catch(err => {
+                this.disabled = false
                 console.error(err)
             })
         },
