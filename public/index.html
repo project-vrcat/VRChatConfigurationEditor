@@ -14,25 +14,42 @@
 <body>
 <div id="app">
     <fieldset>
-        <label for="inputDirectory">Custom Cache Directory Location:</label>
-        <div class="row">
-            <input
-                    type="text"
-                    id="inputDirectory"
-                    readonly
-                    v-model="config.cache_directory"
-                    class="input-dir"
-                    placeholder="Default Directory"
-            />
-            <button class="button button-change" @click="select" :disabled="disabled">Select</button>
+        <div>
+            <label for="inputDirectory">Custom Cache Directory Location:</label>
+            <div class="row">
+                <input
+                        type="text"
+                        id="inputDirectory"
+                        readonly
+                        v-model="config.cache_directory"
+                        class="input-dir"
+                        placeholder="Default Directory (%AppData%\..\LocalLow\VRChat\VRChat)"
+                />
+                <button class="button button-select" @click="select" :disabled="disabled">Select</button>
+            </div>
+            <div>
+                <button class="button" @click="removeAllCache" :disabled="disabled||removeCache">
+                    ⚠ Remove old cache
+                </button>
+                <button class="button" @click="config.cache_directory=''" :disabled="disabled">
+                    Reset to default directory
+                </button>
+            </div>
         </div>
-        <div style="margin-left: -1rem;">
-            <button class="button" @click="removeAllCache" :disabled="disabled||removeCache">
-                ⚠ Remove old cache
-            </button>
-            <button class="button" @click="config.cache_directory=''" :disabled="disabled">
-                Reset to default directory
-            </button>
+        <div>
+            <label for="inputCacheSize">Cache Size: (in gigabytes)</label>
+            <input
+                    type="number"
+                    id="inputCacheSize"
+                    v-model="config.cache_size"
+                    min="20"
+            />
+            <label for="inputDirectory">Cache Expiry Time: (in days)</label>
+            <input
+                    type="number"
+                    v-model="config.cache_expiry_delay"
+                    min="30"
+            />
         </div>
         <div class="float-right">
             <button class="button button-outline" @click="reset" :disabled="disabled">Reset</button>

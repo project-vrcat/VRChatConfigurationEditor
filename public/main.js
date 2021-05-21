@@ -8,6 +8,8 @@ new Vue({
         old_config: {},
         config: {
             cache_directory: '',
+            cache_size: 20,
+            cache_expiry_delay: 30,
         }
     },
     created() {
@@ -30,6 +32,8 @@ new Vue({
             readTextFile(this.config_file).then(data => {
                 let config = JSON.parse(data)
                 if (config.cache_directory === undefined) config.cache_directory = ""
+                if (config.cache_size === undefined) config.cache_size = 20
+                if (config.cache_expiry_delay === undefined) config.cache_expiry_delay = 30
                 this.old_config = Object.assign({}, config)
                 this.config = config
                 this.disabled = false

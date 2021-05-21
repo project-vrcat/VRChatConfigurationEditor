@@ -2,18 +2,16 @@ body {
     padding: 10px;
 }
 
-.button-change {
+.button-select {
+    margin-right: 1rem;
     border-bottom-left-radius: 0;
     border-top-left-radius: 0;
 }
 
 .input-dir {
+    margin-left: 1rem;
     border-bottom-right-radius: 0 !important;
     border-top-right-radius: 0 !important;
-}
-
-label {
-    margin-left: -1rem;
 }
 
 .links {
