@@ -15,7 +15,7 @@ import (
 
 func main() {
 	port := server()
-	if lorca.LocateChrome() == "" {
+	if lorca.ChromeExecutable() == "" {
 		PromptDownload()
 		return
 	}
@@ -27,6 +27,7 @@ func main() {
 	}
 	defer ui.Close()
 
+	_ = ui.Bind("setWindowTitle", BindSetWindowTitle)
 	_ = ui.Bind("vrchatPath", BindVRChatPath)
 	_ = ui.Bind("readTextFile", BindReadTextFile)
 	_ = ui.Bind("writeTextFile", BindWriteTextFile)

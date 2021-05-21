@@ -9,9 +9,16 @@ import (
 	"path/filepath"
 	"runtime"
 	"strings"
+	"syscall"
 
-	"github.com/sqweek/dialog"
+	"github.com/TheTitanrain/w32"
 )
+
+var windowTitle string
+
+func BindSetWindowTitle(title string) {
+	windowTitle = title
+}
 
 func BindVRChatPath() (_path string, err error) {
 	appdata := os.Getenv("AppData")
@@ -40,8 +47,19 @@ func BindWriteTextFile(filename, content string) error {
 	return ioutil.WriteFile(filename, []byte(content), 0666)
 }
 
-func BindSelectDirectory(title string) (dir string, err error) {
-	return dialog.Directory().Title(title).Browse()
+func BindSelectDirectory(title string) (string, error) {
+	_windowTitle, _ := syscall.UTF16PtrFromString(windowTitle)
+	_title, _ := syscall.UTF16PtrFromString(title)
+
+	res := w32.SHBrowseForFolder(&w32.BROWSEINFO{
+		Owner: w32.FindWindowW(nil, _windowTitle),
+		Flags: w32.BIF_RETURNONLYFSDIRS | w32.BIF_NEWDIALOGSTYLE,
+		Title: _title,
+	})
+	if res == 0 {
+		return "", errors.New("Cancelled")
+	}
+	return w32.SHGetPathFromIDList(res), nil
 }
 
 func BindRemoveAll(path string) error {
