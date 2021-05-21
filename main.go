@@ -9,20 +9,20 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/sqweek/dialog"
+	"github.com/TheTitanrain/w32"
 	"github.com/zserge/lorca"
 )
 
 func main() {
 	port := server()
 	if lorca.LocateChrome() == "" {
-		ErrorMessage("Chrome installation is not found.")
+		PromptDownload()
 		return
 	}
 	loadingFile, _ := publicFiles.ReadFile("public/loading.html")
 	ui, err := lorca.New("data:text/html,"+url.PathEscape(string(loadingFile)), "", 800, 500)
 	if err != nil {
-		ErrorMessage(err.Error())
+		w32.MessageBox(w32.HWND(0), err.Error(), "Error", w32.MB_OK|w32.MB_ICONERROR)
 		return
 	}
 	defer ui.Close()
@@ -47,13 +47,6 @@ func server() int {
 		_ = http.ListenAndServe(fmt.Sprintf("127.0.0.1:%d", port), nil)
 	}()
 	return port
-}
-
-func ErrorMessage(msg string) {
-	dialog.
-		Message("%s", msg).
-		Title("Error").
-		Error()
 }
 
 func pickPort() int {
