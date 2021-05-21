@@ -16,10 +16,12 @@ import (
 
 var windowTitle string
 
+// BindSetWindowTitle 设置当前窗口标题, 用于获取HWND
 func BindSetWindowTitle(title string) {
 	windowTitle = title
 }
 
+// BindVRChatPath 获取VRChat配置目录
 func BindVRChatPath() (_path string, err error) {
 	appdata := os.Getenv("AppData")
 	if appdata == "" {
@@ -34,6 +36,7 @@ func BindVRChatPath() (_path string, err error) {
 	return
 }
 
+// BindReadTextFile 读取文本格式的文件
 func BindReadTextFile(filename string) (content string, err error) {
 	data, err := ioutil.ReadFile(filename)
 	if err != nil {
@@ -43,10 +46,12 @@ func BindReadTextFile(filename string) (content string, err error) {
 	return
 }
 
+// BindWriteTextFile 写入文本格式的文件
 func BindWriteTextFile(filename, content string) error {
 	return ioutil.WriteFile(filename, []byte(content), 0666)
 }
 
+// BindSelectDirectory 弹出目录选择框
 func BindSelectDirectory(title string) (string, error) {
 	_windowTitle, _ := syscall.UTF16PtrFromString(windowTitle)
 	_title, _ := syscall.UTF16PtrFromString(title)
@@ -62,14 +67,17 @@ func BindSelectDirectory(title string) (string, error) {
 	return w32.SHGetPathFromIDList(res), nil
 }
 
+// BindRemoveAll 清空指定目录
 func BindRemoveAll(path string) error {
 	return os.RemoveAll(path)
 }
 
+// BindAppVersion 获取应用版本号及编译日期
 func BindAppVersion() string {
 	return fmt.Sprintf("%s build-%s", Version, BuildDate)
 }
 
+// BindOpen 通过系统默认浏览器打开指定url
 func BindOpen(url string) error {
 	switch runtime.GOOS {
 	case "windows":

@@ -6,6 +6,7 @@ import (
 	"github.com/TheTitanrain/w32"
 )
 
+// PromptDownload 弹出询问是否下载Chrome对话框
 func PromptDownload() {
 	title := "Chrome not found"
 	message := "No Chrome/Chromium installation was found. Would you like to download and install it now?"
