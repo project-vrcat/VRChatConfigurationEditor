@@ -1,4 +1,4 @@
-module VRChatConfigurationEditor
+module github.com/project-vrcat/VRChatConfigurationEditor
 
 go 1.16
 
