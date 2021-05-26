@@ -1,37 +1,31 @@
-## Welcome to GitHub Pages
+# VRChat Configuration Editor
 
-You can use the [editor on GitHub](https://github.com/project-vrcat/VRChatConfigurationEditor/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+[![Build Status](https://img.shields.io/github/workflow/status/project-vrcat/VRChatConfigurationEditor/Release?style=flat-square)](https://github.com/project-vrcat/VRChatConfigurationEditor/actions/workflows/release.yml)
+[![Go Report Card](https://goreportcard.com/badge/github.com/project-vrcat/VRChatConfigurationEditor?style=flat-square)](https://goreportcard.com/report/github.com/project-vrcat/VRChatConfigurationEditor)
+[![Release Date](https://img.shields.io/github/v/release/project-vrcat/VRChatConfigurationEditor.svg?include_prereleases&style=flat-square)](https://github.com/project-vrcat/VRChatConfigurationEditor/releases/latest)
+[![License](https://img.shields.io/github/license/project-vrcat/VRChatConfigurationEditor?style=flat-square)](./LICENSE)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## Installation
 
-### Markdown
+### Install from source
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+VRChatConfigurationEditor Requires Go >= 1.16. You can build it from source:
 
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+```bash
+go get -u github.com/project-vrcat/VRChatConfigurationEditor
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+### Install pre-built binary
 
-### Jekyll Themes
+Pre-built binary are available here:
+[Release](https://github.com/project-vrcat/VRChatConfigurationEditor/releases/latest)
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/project-vrcat/VRChatConfigurationEditor/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+Download the binary compatible with your platform, unpack and run.
 
-### Support or Contact
+## Credits
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+- [zserge/lorca](https://github.com/zserge/lorca)
+
+## License
+
+Code is distributed under MIT license, feel free to use it in your proprietary projects as well.
