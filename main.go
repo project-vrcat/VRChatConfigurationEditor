@@ -35,6 +35,7 @@ func main() {
 	_ = ui.Bind("removeAll", BindRemoveAll)
 	_ = ui.Bind("appVersion", BindAppVersion)
 	_ = ui.Bind("open", BindOpen)
+	_ = ui.Bind("checkUpdate", BindCheckUpdate)
 
 	_ = ui.Load(fmt.Sprintf("http://127.0.0.1:%d", port))
 

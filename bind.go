@@ -1,15 +1,21 @@
 package main
 
 import (
+	"context"
+	"encoding/json"
 	"errors"
 	"fmt"
 	"io/ioutil"
+	"log"
+	"net"
+	"net/http"
 	"os"
 	"os/exec"
 	"path/filepath"
 	"runtime"
 	"strings"
 	"syscall"
+	"time"
 
 	"github.com/TheTitanrain/w32"
 )
@@ -88,4 +94,44 @@ func BindOpen(url string) error {
 		return exec.Command("xdg-open", url).Start()
 	}
 	return fmt.Errorf("don't know how to open things on %s platform", runtime.GOOS)
+}
+
+// BindCheckUpdate 检查是否存在新版本
+func BindCheckUpdate() bool {
+	api := "https://api.github.com/repos/project-vrcat/VRChatConfigurationEditor/releases/latest"
+	// GitHub API的IP https://api.github.com/meta
+	// 防止因DNS污染而无法获取信息
+	githubApiIp := "18.179.245.253"
+	client := http.Client{Timeout: time.Second * 10}
+	if IsChineseSimplified() {
+		client.Transport = &http.Transport{
+			DialContext: func(ctx context.Context, network string, addr string) (net.Conn, error) {
+				_, port, err := net.SplitHostPort(addr)
+				if err != nil {
+					return nil, err
+				}
+				var dialer net.Dialer
+				return dialer.DialContext(ctx, network, net.JoinHostPort(githubApiIp, port))
+			},
+		}
+	}
+	req, _ := http.NewRequest(http.MethodGet, api, nil)
+	resp, err := client.Do(req)
+	if err != nil {
+		log.Println(err)
+		return false
+	}
+	defer resp.Body.Close()
+	data, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		log.Println(err)
+		return false
+	}
+	var info struct {
+		TagName string `json:"tag_name"`
+	}
+	if json.Unmarshal(data, &info) != nil {
+		return false
+	}
+	return info.TagName != Version
 }

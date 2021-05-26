@@ -13,6 +13,9 @@ new Vue({
         }
     },
     created() {
+        checkUpdate().then(update => {
+            if (update && confirm("New update available.\nPress the \"OK\" button to download.") === true) open("https://lumina.moe/downloads")
+        })
         appVersion().then(version => {
             document.title += " " + version
             setWindowTitle(document.title)
