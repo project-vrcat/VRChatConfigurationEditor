@@ -7,6 +7,7 @@ new Vue({
         vrchat_dir: '',
         old_config: {},
         config: {
+            disableRichPresence: false,
             cache_directory: '',
             cache_size: 20,
             cache_expiry_delay: 30,
@@ -34,6 +35,7 @@ new Vue({
         load_config() {
             readTextFile(this.config_file).then(data => {
                 let config = JSON.parse(data)
+                if (config.disableRichPresence === undefined) config.disableRichPresence = false
                 if (config.cache_directory === undefined) config.cache_directory = ""
                 if (config.cache_size === undefined) config.cache_size = 20
                 if (config.cache_expiry_delay === undefined) config.cache_expiry_delay = 30

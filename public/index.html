@@ -38,18 +38,14 @@
         </div>
         <div>
             <label for="inputCacheSize">Cache Size: (in gigabytes)</label>
-            <input
-                    type="number"
-                    id="inputCacheSize"
-                    v-model="config.cache_size"
-                    min="20"
-            />
+            <input type="number" id="inputCacheSize" v-model="config.cache_size" min="20"/>
             <label for="inputDirectory">Cache Expiry Time: (in days)</label>
-            <input
-                    type="number"
-                    v-model="config.cache_expiry_delay"
-                    min="30"
-            />
+            <input type="number" v-model="config.cache_expiry_delay" min="30"/>
+        </div>
+        <div>
+            <label for="inputDisableRichPresence">Rich Presence: (Discord and Steam Rich Presence)</label>
+            <input type="checkbox" id="inputDisableRichPresence" v-model="config.disableRichPresence">
+            <label for="inputDisableRichPresence" class="labelInline">Disable Rich Presence</label>
         </div>
         <div class="float-right">
             <button class="button button-outline" @click="reset" :disabled="disabled">Reset</button>
