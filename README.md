@@ -1,11 +1,30 @@
 # VRChat Configuration Editor
 
-[![](https://goreportcard.com/badge/github.com/project-vrcat/VRChatConfigurationEditor)](https://goreportcard.com/report/github.com/project-vrcat/VRChatConfigurationEditor)
-[![Build Status](https://img.shields.io/github/workflow/status/project-vrcat/VRChatConfigurationEditor/Release)](https://github.com/project-vrcat/VRChatConfigurationEditor/actions/workflows/release.yml)
-[![Release Date](https://img.shields.io/github/release-date/project-vrcat/VRChatConfigurationEditor)](https://github.com/project-vrcat/VRChatConfigurationEditor/releases/latest)
-[![License](https://img.shields.io/github/license/project-vrcat/VRChatConfigurationEditor)](./LICENSE)
+[![Build Status](https://img.shields.io/github/workflow/status/project-vrcat/VRChatConfigurationEditor/Release?style=flat-square)](https://github.com/project-vrcat/VRChatConfigurationEditor/actions/workflows/release.yml)
+[![Go Report Card](https://goreportcard.com/badge/github.com/project-vrcat/VRChatConfigurationEditor?style=flat-square)](https://goreportcard.com/report/github.com/project-vrcat/VRChatConfigurationEditor)
+[![Release Date](https://img.shields.io/github/v/release/project-vrcat/VRChatConfigurationEditor.svg?include_prereleases&style=flat-square)](https://github.com/project-vrcat/VRChatConfigurationEditor/releases/latest)
+[![License](https://img.shields.io/github/license/project-vrcat/VRChatConfigurationEditor?style=flat-square)](./LICENSE)
 
-WIP
+## Installation
+
+### Install from source
+
+VRChatConfigurationEditor Requires Go >= 1.16. You can build it from source:
+
+```bash
+go get -u github.com/project-vrcat/VRChatConfigurationEditor
+```
+
+### Install pre-built binary
+
+Pre-built binary are available here:
+[Release](https://github.com/project-vrcat/VRChatConfigurationEditor/releases/latest)
+
+Download the binary compatible with your platform, unpack and run.
+
+## Credits
+
+- [zserge/lorca](https://github.com/zserge/lorca)
 
 ## License
 
