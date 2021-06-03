@@ -15,7 +15,7 @@ func EnumWindowsByProcessId(pid int) w32.HWND {
 	_hwnd := w32.HWND(0)
 	cb := syscall.NewCallback(func(hwnd syscall.Handle, lParam uintptr) uintptr {
 		_, _pid := w32.GetWindowThreadProcessId(w32.HWND(hwnd))
-		if _pid == pid {
+		if _pid == pid && w32.IsWindowVisible(w32.HWND(hwnd)) {
 			_hwnd = w32.HWND(hwnd)
 			return 0
 		}
