@@ -12,20 +12,12 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
-	"runtime"
 	"strings"
 	"syscall"
 	"time"
 
 	"github.com/TheTitanrain/w32"
 )
-
-var windowTitle string
-
-// BindSetWindowTitle 设置当前窗口标题, 用于获取HWND
-func BindSetWindowTitle(title string) {
-	windowTitle = title
-}
 
 // BindVRChatPath 获取VRChat配置目录
 func BindVRChatPath() (_path string, err error) {
@@ -59,11 +51,12 @@ func BindWriteTextFile(filename, content string) error {
 
 // BindSelectDirectory 弹出目录选择框
 func BindSelectDirectory(title string) (string, error) {
-	_windowTitle, _ := syscall.UTF16PtrFromString(windowTitle)
+	pid := ui.Getpid()
+	owner := FindWindowByProcessId(pid)
 	_title, _ := syscall.UTF16PtrFromString(title)
 
 	res := w32.SHBrowseForFolder(&w32.BROWSEINFO{
-		Owner: w32.FindWindowW(nil, _windowTitle),
+		Owner: owner,
 		Flags: w32.BIF_RETURNONLYFSDIRS | w32.BIF_NEWDIALOGSTYLE,
 		Title: _title,
 	})
@@ -85,15 +78,7 @@ func BindAppVersion() string {
 
 // BindOpen 通过系统默认浏览器打开指定url
 func BindOpen(url string) error {
-	switch runtime.GOOS {
-	case "windows":
-		return exec.Command("cmd", "/c", "start", url).Start()
-	case "darwin":
-		return exec.Command("open", url).Start()
-	case "linux":
-		return exec.Command("xdg-open", url).Start()
-	}
-	return fmt.Errorf("don't know how to open things on %s platform", runtime.GOOS)
+	return exec.Command("cmd", "/c", "start", url).Start()
 }
 
 // BindCheckUpdate 检查是否存在新版本
