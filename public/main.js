@@ -19,9 +19,6 @@ new Vue({
         })
         appVersion().then(version => {
             document.title += " " + version
-            setWindowTitle(document.title)
-        }).catch(_ => {
-            setWindowTitle(document.title)
         })
         vrchatPath().then(dir => {
             this.vrchat_dir = dir

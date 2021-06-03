@@ -20,13 +20,6 @@ import (
 	"github.com/TheTitanrain/w32"
 )
 
-var windowTitle string
-
-// BindSetWindowTitle 设置当前窗口标题, 用于获取HWND
-func BindSetWindowTitle(title string) {
-	windowTitle = title
-}
-
 // BindVRChatPath 获取VRChat配置目录
 func BindVRChatPath() (_path string, err error) {
 	appdata := os.Getenv("AppData")
@@ -59,11 +52,12 @@ func BindWriteTextFile(filename, content string) error {
 
 // BindSelectDirectory 弹出目录选择框
 func BindSelectDirectory(title string) (string, error) {
-	_windowTitle, _ := syscall.UTF16PtrFromString(windowTitle)
+	pid := ui.Getpid()
+	owner := EnumWindowsByProcessId(pid)
 	_title, _ := syscall.UTF16PtrFromString(title)
 
 	res := w32.SHBrowseForFolder(&w32.BROWSEINFO{
-		Owner: w32.FindWindowW(nil, _windowTitle),
+		Owner: owner,
 		Flags: w32.BIF_RETURNONLYFSDIRS | w32.BIF_NEWDIALOGSTYLE,
 		Title: _title,
 	})
