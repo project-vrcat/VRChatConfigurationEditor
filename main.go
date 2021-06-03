@@ -3,7 +3,6 @@ package main
 
 import (
 	"fmt"
-	"net/url"
 
 	"github.com/TheTitanrain/w32"
 	"github.com/zserge/lorca"
@@ -15,8 +14,7 @@ func main() {
 		PromptDownload()
 		return
 	}
-	loadingFile, _ := publicFiles.ReadFile("public/loading.html")
-	ui, err := lorca.New("data:text/html,"+url.PathEscape(string(loadingFile)), "", 800, 500)
+	ui, err := lorca.New("", "", 800, 500)
 	if err != nil {
 		w32.MessageBox(w32.HWND(0), err.Error(), "Error", w32.MB_OK|w32.MB_ICONERROR)
 		return
