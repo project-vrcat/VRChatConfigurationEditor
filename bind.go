@@ -12,7 +12,6 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
-	"strings"
 	"syscall"
 	"time"
 
@@ -21,15 +20,17 @@ import (
 
 // BindVRChatPath 获取VRChat配置目录
 func BindVRChatPath() (_path string, err error) {
-	appdata := os.Getenv("AppData")
+	var localLow string
+	appdata := os.Getenv("LOCALAPPDATA")
 	if appdata == "" {
-		err = errors.New("The AppData environment variable must be set for app to run correctly.")
-		return
+		appdata = os.Getenv("APPDATA")
+		if appdata == "" {
+			err = errors.New("The AppData environment variable must be set for app to run correctly.")
+			return
+		}
 	}
-	if strings.Contains(appdata, "\\Roaming") {
-		appdata = filepath.Dir(appdata)
-	}
-	_path = filepath.Join(appdata, "LocalLow\\VRChat\\VRChat")
+	localLow = filepath.Join(appdata, "../LocalLow")
+	_path = filepath.Join(localLow, "VRChat/VRChat")
 	_, err = os.Stat(_path)
 	return
 }
