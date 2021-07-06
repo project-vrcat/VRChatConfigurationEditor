@@ -4,6 +4,7 @@ package main
 import (
 	"fmt"
 	"log"
+	"mime"
 
 	"github.com/TheTitanrain/w32"
 	"github.com/zserge/lorca"
@@ -11,8 +12,15 @@ import (
 
 var ui lorca.UI
 
-func main() {
+func init() {
 	log.SetFlags(log.Lshortfile)
+
+	// Good job Microsoft :)
+	// https://github.com/golang/go/issues/32350
+	_ = mime.AddExtensionType(".js", "application/javascript; charset=utf-8")
+}
+
+func main() {
 	port := server()
 	if lorca.ChromeExecutable() == "" {
 		PromptDownload()
