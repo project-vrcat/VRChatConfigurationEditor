@@ -47,6 +47,28 @@
             <input type="checkbox" id="inputDisableRichPresence" v-model="config.disableRichPresence">
             <label for="inputDisableRichPresence" class="labelInline">Disable Rich Presence</label>
         </div>
+        
+        <div class="row">
+            <div class="column column-50">
+                <label for="inputCamera">VR Camera: </label>
+                <select id="inputCamera">
+                    <option value="720">720P</option>
+                    <option value="1080">1080P</option>
+                    <option value="2K">2K</option>
+                    <option value="4K">4K</option>
+                </select>
+            </div>
+            <div class="column column-50">
+                <label for="inputScreenshot">Screenshot: </label>
+                <select id="inputScreenshot">
+                    <option value="720">720P</option>
+                    <option value="1080">1080P</option>
+                    <option value="2K">2K</option>
+                    <option value="4K">4K</option>
+                </select>
+            </div>
+        </div>
+        
         <div class="float-right">
             <button class="button button-outline" @click="reset" :disabled="disabled">Reset</button>
             <button class="button" @click="save" :disabled="disabled">Save</button>
