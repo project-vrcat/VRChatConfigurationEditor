@@ -6,6 +6,7 @@ import (
 	"io/fs"
 	"net"
 	"net/http"
+	"os"
 )
 
 func server() int {
@@ -32,6 +33,9 @@ func pickPort() int {
 var publicFiles embed.FS
 
 func getFileSystem() http.FileSystem {
+	if len(os.Args) > 1 && (os.Args[1] == "live" || os.Args[1] == "--live") {
+		return http.Dir("./public")
+	}
 	fSys, _ := fs.Sub(publicFiles, "public")
 	return http.FS(fSys)
 }
