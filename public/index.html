@@ -51,18 +51,18 @@
         <div class="row">
             <div class="column column-50">
                 <label for="inputCamera">VR Camera: </label>
-                <select id="inputCamera">
-                    <option value="720">720P</option>
-                    <option value="1080">1080P</option>
+                <select id="inputCamera" v-model="cameraRes">
+                    <option value="720">720</option>
+                    <option value="1080">1080 (default)</option>
                     <option value="2K">2K</option>
                     <option value="4K">4K</option>
                 </select>
             </div>
             <div class="column column-50">
                 <label for="inputScreenshot">Screenshot: </label>
-                <select id="inputScreenshot">
-                    <option value="720">720P</option>
-                    <option value="1080">1080P</option>
+                <select id="inputScreenshot" v-model="screenshotRes">
+                    <option value="720">720</option>
+                    <option value="1080">1080 (default)</option>
                     <option value="2K">2K</option>
                     <option value="4K">4K</option>
                 </select>
