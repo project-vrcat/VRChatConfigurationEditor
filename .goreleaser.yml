@@ -12,6 +12,9 @@ builds:
       - amd64
     ldflags:
       - -X main.Version={{.Tag}} -X main.BuildDate={{time "20060102"}}
+    hooks:
+      post:
+        - ./upx.exe "{{ .Path }}"
 archives:
   - replacements:
       windows: Windows
