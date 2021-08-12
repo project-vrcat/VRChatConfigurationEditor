@@ -1,3 +1,4 @@
+project_name: VRChatConfigurationEditor
 before:
   hooks:
     - go mod tidy
@@ -10,11 +11,12 @@ builds:
     goarch:
       - amd64
     ldflags:
-      - -s -w -H windowsgui -X main.Version={{.Tag}} -X main.BuildDate={{time "20060102"}}
+      - -X main.Version={{.Tag}} -X main.BuildDate={{time "20060102"}}
 archives:
   - replacements:
       windows: Windows
       amd64: x86_64
+    format: zip
 checksum:
   name_template: 'checksums.txt'
 snapshot:

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"os"
 	"syscall"
 
 	"github.com/TheTitanrain/w32"
@@ -46,4 +47,16 @@ func EnumWindows(enumFunc uintptr, lParam uintptr) (err error) {
 		}
 	}
 	return
+}
+
+// HideConsoleWindow 隐藏控制台窗口
+func HideConsoleWindow() {
+	hwnd := w32.GetConsoleWindow()
+	if hwnd <= 0 {
+		return
+	}
+	_, pid := w32.GetWindowThreadProcessId(hwnd)
+	if pid == os.Getpid() {
+		w32.ShowWindow(hwnd, 0)
+	}
 }

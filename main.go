@@ -18,6 +18,8 @@ func init() {
 	// Good job Microsoft :)
 	// https://github.com/golang/go/issues/32350
 	_ = mime.AddExtensionType(".js", "application/javascript; charset=utf-8")
+
+	HideConsoleWindow()
 }
 
 func main() {
