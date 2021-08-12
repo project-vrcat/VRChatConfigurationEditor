@@ -14,7 +14,7 @@ builds:
       - -X main.Version={{.Tag}} -X main.BuildDate={{time "20060102"}}
     hooks:
       post:
-        - ./upx.exe "{{ .Path }}"
+        - upx "{{ .Path }}"
 archives:
   - replacements:
       windows: Windows

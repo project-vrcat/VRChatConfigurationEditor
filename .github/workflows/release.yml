@@ -15,9 +15,8 @@ jobs:
       - uses: actions/setup-go@v2
         with:
           go-version: '^1.16'
-      - run: |
-          (New-Object System.Net.WebClient).DownloadFile("https://github.com/upx/upx/releases/download/v3.96/upx-3.96-win64.zip",$(Get-Location).Path+"\upx.zip");
-          7z e upx.zip -r -o".\" upx.exe
+      - name: Install UPX
+        run: choco install upx
       - run: |
           go install github.com/tc-hib/go-winres@latest
           go-winres simply --icon public/favicon.png
