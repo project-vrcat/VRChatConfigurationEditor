@@ -26,6 +26,12 @@ Download the binary compatible with your platform, unpack and run.
 
 - [zserge/lorca](https://github.com/zserge/lorca)
 
+## Thanks
+
+Thanks to [JetBrains](https://jb.gg/OpenSource) for the open source license(s).
+
+[![JetBrains Logo](https://raw.githubusercontent.com/project-vrcat/VRChatConfigurationEditor/main/images/jetbrains.svg)](https://jb.gg/OpenSource)
+
 ## License
 
 Code is distributed under MIT license, feel free to use it in your proprietary projects as well.
