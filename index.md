@@ -12,7 +12,7 @@
 VRChatConfigurationEditor Requires Go >= 1.16. You can build it from source:
 
 ```bash
-go get -u github.com/project-vrcat/VRChatConfigurationEditor
+go install github.com/project-vrcat/VRChatConfigurationEditor
 ```
 
 ### Install pre-built binary
