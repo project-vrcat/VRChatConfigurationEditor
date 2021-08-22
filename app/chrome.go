@@ -1,9 +1,10 @@
-package main
+package app
 
 import (
 	"os/exec"
 
-	"github.com/TheTitanrain/w32"
+	"github.com/project-vrcat/VRChatConfigurationEditor/pkg/utils"
+	"github.com/project-vrcat/VRChatConfigurationEditor/pkg/win32"
 )
 
 // PromptDownload 弹出询问是否下载Chrome对话框
@@ -13,10 +14,10 @@ func PromptDownload() {
 	downloadUrl := "https://www.google.com/chrome/"
 	downloadUrlChina := "https://www.google.cn/chrome/"
 
-	r := w32.MessageBox(w32.HWND(0), message, title, w32.MB_YESNO|w32.MB_ICONQUESTION)
-	if r == w32.IDYES {
+	r := win32.MessageBox(0, message, title, win32.MB_YESNO|win32.MB_ICONQUESTION)
+	if r == win32.IDYES {
 		// 如果系统语言为简体中文, 使用中国专用Chrome下载链接
-		if IsChineseSimplified() {
+		if utils.IsChineseSimplified() {
 			downloadUrl = downloadUrlChina
 		}
 		_ = exec.Command("cmd", "/c", "start", downloadUrl).Start()

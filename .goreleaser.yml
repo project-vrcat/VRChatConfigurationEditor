@@ -11,8 +11,10 @@ builds:
     goarch:
       - amd64
     ldflags:
-      - -X main.Version={{.Tag}} -X main.BuildDate={{time "20060102"}}
+      - -w -s
     hooks:
+      pre:
+        - go run build/build.go
       post:
         - upx "{{ .Path }}"
 archives:

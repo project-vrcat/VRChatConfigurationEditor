@@ -1,13 +1,23 @@
-package main
+package app
 
 import (
 	"embed"
 	"fmt"
 	"io/fs"
+	"mime"
 	"net"
 	"net/http"
 	"os"
 )
+
+// PublicFiles 嵌入资源
+var PublicFiles embed.FS
+
+func init() {
+	// Good job Microsoft :)
+	// https://github.com/golang/go/issues/32350
+	_ = mime.AddExtensionType(".js", "application/javascript; charset=utf-8")
+}
 
 func server() int {
 	port := pickPort()
@@ -29,13 +39,10 @@ func pickPort() int {
 	return addr.Port
 }
 
-//go:embed public
-var publicFiles embed.FS
-
 func getFileSystem() http.FileSystem {
 	if len(os.Args) > 1 && (os.Args[1] == "live" || os.Args[1] == "--live") {
 		return http.Dir("./public")
 	}
-	fSys, _ := fs.Sub(publicFiles, "public")
+	fSys, _ := fs.Sub(PublicFiles, "public")
 	return http.FS(fSys)
 }

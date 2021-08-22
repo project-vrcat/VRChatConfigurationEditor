@@ -1,4 +1,4 @@
-package main
+package app
 
 import (
 	"encoding/json"
@@ -13,7 +13,7 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/TheTitanrain/w32"
+	"github.com/project-vrcat/VRChatConfigurationEditor/pkg/win32"
 )
 
 // BindVRChatPath 获取VRChat配置目录
@@ -22,10 +22,10 @@ func BindVRChatPath() (_path string, err error) {
 	appdata := os.Getenv("LOCALAPPDATA")
 	if appdata == "" {
 		appdata = os.Getenv("APPDATA")
-		if appdata == "" {
-			err = errors.New("The AppData environment variable must be set for app to run correctly.")
-			return
-		}
+	}
+	if appdata == "" {
+		err = errors.New("the AppData environment variable must be set for app to run correctly")
+		return
 	}
 	localLow = filepath.Join(appdata, "../LocalLow")
 	_path = filepath.Join(localLow, "VRChat/VRChat")
@@ -51,18 +51,18 @@ func BindWriteTextFile(filename, content string) error {
 // BindSelectDirectory 弹出目录选择框
 func BindSelectDirectory(title string) (string, error) {
 	pid := ui.Getpid()
-	owner := FindWindowByProcessId(pid)
+	owner := win32.FindWindowByProcessId(pid)
 	_title, _ := syscall.UTF16PtrFromString(title)
 
-	res := w32.SHBrowseForFolder(&w32.BROWSEINFO{
+	res := win32.SHBrowseForFolder(&win32.BROWSEINFO{
 		Owner: owner,
-		Flags: w32.BIF_RETURNONLYFSDIRS | w32.BIF_NEWDIALOGSTYLE,
+		Flags: win32.BIF_RETURNONLYFSDIRS | win32.BIF_NEWDIALOGSTYLE,
 		Title: _title,
 	})
 	if res == 0 {
-		return "", errors.New("Cancelled")
+		return "", errors.New("cancelled")
 	}
-	return w32.SHGetPathFromIDList(res), nil
+	return win32.SHGetPathFromIDList(res), nil
 }
 
 // BindRemoveAll 清空指定目录
@@ -72,7 +72,7 @@ func BindRemoveAll(path string) error {
 
 // BindAppVersion 获取应用版本号及编译日期
 func BindAppVersion() string {
-	return fmt.Sprintf("%s build-%s", Version, BuildDate)
+	return fmt.Sprintf("%s build-%s", Version, GitHash)
 }
 
 // BindOpen 通过系统默认浏览器打开指定url
