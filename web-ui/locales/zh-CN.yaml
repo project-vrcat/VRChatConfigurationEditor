@@ -1,0 +1,35 @@
+title: VRChat配置编辑器
+cache-location:
+  label: 自定义缓存位置
+  placeholder: 默认位置 (%AppData%\..\LocalLow\VRChat\VRChat)
+  button: 选择位置
+  tooltip: 定义VRChat缓存的储存位置
+  cache_size:
+    label: 缓存大小
+    suffix: GB
+  cache_expiry_delay:
+    label: 缓存有效期
+    suffix: 天
+rich-presence:
+  label: 扩展信息集成
+  tooltip: 是否开启Discord和Steam的扩展信息集成, 开启后将会在Discord和Steam中显示更多的游戏信息
+camera_and_screenshot:
+  default: 默认
+  camera:
+    label: 相机分辨率
+  screenshot:
+    label: 截图分辨率
+first_person_steadycam_fov:
+  label: First-Person Steadycam FOV
+avatar_dynamic_bone_limits:
+  label: Avatar Dynamic Bone Limits
+  max_affected_transforms: Max Affected Transforms
+  max_collision_checks: Max Collision Checks
+
+switch:
+  enable: 启用
+  disable: 禁用
+button:
+  confirm: 确认
+  cancel: 取消
+  reset: 重置
