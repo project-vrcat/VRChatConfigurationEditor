@@ -1,0 +1,6 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <system:String x:Key="Download">下载 WebView2 运行时安装程序</system:String>
+    <system:String x:Key="NotInstalled">WebView2运行时未安装.</system:String>
+</ResourceDictionary>

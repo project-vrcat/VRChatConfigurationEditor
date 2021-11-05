@@ -1,0 +1,36 @@
+title: VRChat Configuration Editor
+cache-location:
+  label: Custom Cache Directory Location
+  placeholder: Default Location (%AppData%\..\LocalLow\VRChat\VRChat)
+  button: Select
+  tooltip: Defines the location where VRChat should store its cache data
+  cache_size:
+    label: Cache Size
+    suffix: GB
+  cache_expiry_delay:
+    label: Cache Expiry Time
+    suffix: Day
+rich-presence:
+  label: Rich Presence
+  tooltip: You can enable or disable Discord and Steam Rich Presence functions
+camera_and_screenshot:
+  default: Default
+  camera:
+    label: Camera resolution
+  screenshot:
+    label: Screenshot resolution
+first_person_steadycam_fov:
+  label: First-Person Steadycam FOV
+avatar_dynamic_bone_limits:
+  label: Avatar Dynamic Bone Limits
+  max_affected_transforms: Max Affected Transforms
+  max_collision_checks: Max Collision Checks
+
+switch:
+  enable: Enable
+  disable: Disable
+button:
+  confirm: Confirm
+  cancel: Cancel
+  reset: Reset
+  save: Save

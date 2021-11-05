@@ -1,0 +1,17 @@
+﻿<Window x:Class="VRChatConfigurationEditor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VRChatConfigurationEditor"
+        mc:Ignorable="d"
+        Title="VRChat Configuration Editor" Height="600" Width="900" Icon="icon.ico" WindowStartupLocation="CenterScreen" Closing="Window_Closing" Initialized="Window_Initialized">
+    <WrapPanel Name="Main" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,40" Orientation="Vertical">
+        <Label x:Name="NotInstalledLabel" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Consolas" FontSize="28" Content="{DynamicResource NotInstalled}"></Label>
+        <TextBlock HorizontalAlignment="Center">
+            <Hyperlink Name="RuntimeDownloadButton" Click="RuntimeDownloadButton_OnClick" FontFamily="Consolas">
+                <Run Name="RuntimeDownloadText" Text="{DynamicResource Download}"></Run>
+            </Hyperlink>
+        </TextBlock>
+    </WrapPanel>
+</Window>
